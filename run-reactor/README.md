@@ -15,6 +15,10 @@ First, build the demo container.
 $ docker build -t flux-bug .
 ```
 
+## Before bug fix
+
+We were calling `handle.flux_reactor_run()` and we needed to call `handle.reactor_run()`.
+
 You can reproduce the bug by way of running the container, which will start flux and then use the
 entrypoint.sh to run three different cases (the ones above):
 
@@ -80,3 +84,24 @@ root@c564560fc464:/code# python example.py case3
 ```
 
 And vim and IPython are installed if you want to poke around. Happy debugging! 🐛️
+
+## After bug fix
+
+Calling `handle.reactor_run()` instead of `handle.flux_reactor_run()`.
+
+
+```console
+$ docker run -it flux-bug
+
+======== 😸️ Preparing example for working case1! 😸️ ========
+handle.reactor_run(reactor, 1)
+😹️ There was no exception for case1! yay!
+
+======== 😸️ Preparing example for broken case2! 😸️ ========
+handle.reactor_run(flags=1)
+😹️ There was no exception for case2! yay!
+
+======== 😸️ Preparing example for broken case3! 😸️ ========
+handle.reactor_run()
+
+```

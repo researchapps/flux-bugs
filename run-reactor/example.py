@@ -28,18 +28,18 @@ def main(case, state):
     
             # This works - two position arguments (reactor and flag)
             if case == "case1":
-                 print("handle.flux_reactor_run(reactor, 1)")
-                 watcher_count = handle.flux_reactor_run(reactor, 1)
+                 print("handle.reactor_run(reactor, 1)")
+                 watcher_count = handle.reactor_run(reactor, 1)
 
             # This doesn't work - not providing the reactor and specifying flags
             elif case == "case2":
-                print("handle.flux_reactor_run(flags=1)")
-                watcher_count = handle.flux_reactor_run(flags=1)
+                print("handle.reactor_run(flags=1)")
+                watcher_count = handle.reactor_run(flags=1)
 
             # This also doesn't work - should assume defaults                    
             elif case == "case3":
-                print("handle.flux_reactor_run()")
-                watcher_count = handle.flux_reactor_run()
+                print("handle.reactor_run()")
+                watcher_count = handle.reactor_run()
 
         if reactor_interrupted:
             raise KeyboardInterrupt
